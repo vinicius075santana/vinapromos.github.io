@@ -101,72 +101,50 @@
       Entrar no Telegram
     </a>
 
-  </div>
 </div>
-
+</div>
 <script>
-  // ─── COUNTDOWN ───────────────────────────────────────────────
-  let totalSeconds = 3 * 60; // 3 minutes
-  const display = document.getElementById('countdown');
-
-  function pad(n) { return String(n).padStart(2, '0'); }
-
-  function updateCountdown() {
-    if (totalSeconds <= 0) {
-      display.textContent = 'ENCERRADO';
-      display.classList.add('encerrado');
-      clearInterval(countdownInterval);
-      return;
-    }
-    const m = Math.floor(totalSeconds / 60);
-    const s = totalSeconds % 60;
-    display.textContent = pad(m) + ':' + pad(s);
-
-    // Flash red when under 30s
-    if (totalSeconds <= 30) {
-      display.style.color = '#ff4d4d';
-      display.style.textShadow = '0 0 10px #ff4d4d, 0 0 30px rgba(255,77,77,0.6)';
-    }
-    totalSeconds--;
+(function(){
+  const cv=document.getElementById('mx'),ctx=cv.getContext('2d');
+  const ch='01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+  let cols,drops;
+  function init(){cv.width=window.innerWidth;cv.height=window.innerHeight;cols=Math.floor(cv.width/15);drops=Array.from({length:cols},()=>Math.random()*-150);}
+  init();window.addEventListener('resize',init);
+  setInterval(function(){ctx.fillStyle='rgba(0,9,0,0.043)';ctx.fillRect(0,0,cv.width,cv.height);for(let i=0;i<cols;i++){const b=Math.random()>.94;ctx.fillStyle=b?'#afffcc':'#00ff41';ctx.font='13px "Share Tech Mono",monospace';ctx.fillText(ch[Math.floor(Math.random()*ch.length)],i*15,drops[i]*15);if(drops[i]*15>cv.height&&Math.random()>.974)drops[i]=0;drops[i]++;}},42);
+})();
+(function(){
+  const el=document.getElementById('timer');
+  const pad=n=>String(n).padStart(2,'0');
+  let left=180;
+  const iv=setInterval(function(){
+    left--;
+    if(left<=0){clearInterval(iv);el.textContent='ENCERRADO';el.classList.remove('urgent');el.classList.add('enc');return;}
+    el.textContent=pad(Math.floor(left/60))+':'+pad(left%60);
+    if(left<=30){el.classList.add('urgent');}
+  },1000);
+})();
+(function(){
+  const vn=document.getElementById('vn'),bf=document.getElementById('bf'),bp=document.getElementById('bp');
+  const TOTAL=1000;let vagas=189;
+  function r(){
+    const p=Math.min(99,Math.round(((TOTAL-vagas)/TOTAL)*100));
+    vn.textContent=vagas;
+    bf.style.width=p+'%';
+    bp.textContent=p+'%';
   }
-
-  updateCountdown();
-  const countdownInterval = setInterval(updateCountdown, 1000);
-
-  // ─── VAGAS + PROGRESS BAR ─────────────────────────────────────
-  let vagas = 177;
-  const TOTAL_VAGAS = 1000; // fictional total for % calc
-  const vagasEl = document.getElementById('vagas-num');
-  const bar = document.getElementById('progress-bar');
-
-  function getPct() {
-    // percentage of vagas TAKEN = (TOTAL - vagas) / TOTAL
-    const taken = TOTAL_VAGAS - vagas;
-    const pct = Math.round((taken / TOTAL_VAGAS) * 100);
-    return Math.max(0, Math.min(100, pct));
+  function flash(){
+    vn.classList.remove('flash');
+    void vn.offsetWidth;
+    vn.classList.add('flash');
   }
-
-  function updateVagas() {
-    const decrement = Math.floor(Math.random() * 3) + 1; // 1–3
-    vagas = Math.max(0, vagas - decrement);
-
-    vagasEl.textContent = vagas;
-    // trigger flash
-    vagasEl.classList.remove('flash');
-    void vagasEl.offsetWidth; // reflow
-    vagasEl.classList.add('flash');
-
-    const pct = getPct();
-    bar.style.width = pct + '%';
-    bar.setAttribute('data-pct', pct);
-  }
-
-  // Initial bar state
-  const initPct = getPct();
-  bar.style.width = initPct + '%';
-  bar.setAttribute('data-pct', initPct);
-
-  setInterval(updateVagas, 15000);
+  r();
+  setInterval(function(){
+    if(vagas<=0)return;
+    vagas=Math.max(0,vagas-(Math.floor(Math.random()*3)+1));
+    r();
+    flash();
+  },15000);
+})();
 </script>
 </body>
 </html>
