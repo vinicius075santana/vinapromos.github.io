@@ -1,150 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vinapromos Landing Page</title>
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-            background: #000;
-            color: #0f0;
-        }
-        .matrix {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: black;
-            overflow: hidden;
-        }
-        .matrix span {
-            font-family: 'Courier New', monospace;
-            color: #0f0;
-            white-space: nowrap;
-            position: absolute;
-            bottom: 100%;
-            animation: fall 5s linear infinite;
-        }
-        @keyframes fall {
-            to {
-                transform: translateY(100vh);
-            }
-        }
-        .countdown, .vacancy {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            margin-top: 50px;
-        }
-        .progress {
-            width: 100%;
-            height: 20px;
-            background-color: #ddd;
-        }
-        .progress-bar {
-            height: 100%;
-            background-color: #4caf50;
-            text-align: center;
-            line-height: 20px;
-            color: white;
-        }
-        .contact-buttons {
-            margin-top: 20px;
-        }
-        .contact-buttons a {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 5px;
-            background-color: #25D366; /* WhatsApp color */
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .contact-buttons a.telegram {
-            background-color: #0088cc; /* Telegram color */
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vina Promos</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: radial-gradient(circle, #001a14, #000);
+        color: white;
+        display: flex;
+        justify-content: center;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 420px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .logo {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: #0f0;
+        margin: 20px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: black;
+        box-shadow: 0 0 20px #0f0;
+    }
+
+    h1 {
+        font-size: 22px;
+        margin: 10px 0;
+    }
+
+    p {
+        opacity: 0.8;
+    }
+
+    .timer-box {
+        border: 2px solid #00ffcc;
+        padding: 20px;
+        border-radius: 15px;
+        margin: 20px 0;
+        box-shadow: 0 0 20px rgba(0,255,200,0.3);
+    }
+
+    .timer {
+        font-size: 40px;
+        color: #00eaff;
+        font-weight: bold;
+    }
+
+    .vagas {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    .progress {
+        width: 100%;
+        height: 12px;
+        background: #222;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 10px 0 20px;
+    }
+
+    .progress-bar {
+        height: 100%;
+        width: 80%;
+        background: linear-gradient(90deg, #ff00cc, #00eaff);
+        transition: width 0.5s;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 12px;
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+    }
+
+    .whatsapp {
+        background: #25D366;
+    }
+
+    .telegram {
+        background: #229ED9;
+    }
+</style>
 </head>
+
 <body>
-    <div class="matrix" id="matrix"></div>
-    
-    <div class="countdown">
-        <h1>Countdown Timer</h1>
-        <div id="countdown"></div>
-    </div>
-    
-    <div class="vacancy">
-        <h1>Vacancy Counter</h1>
-        <div class="progress">
-            <div class="progress-bar" id="vacancyBar">0 / 100</div>
-        </div>
-    </div>
-    
-    <!-- BUTTONS -->
-    <a href="https://chat.whatsapp.com/KRXeKbsqlUrI4ua9MkRvAN" class="btn btn-whatsapp" target="_blank" rel="noopener">
-      <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.829L.057 23.571a.5.5 0 0 0 .611.611l5.742-1.466A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.773 9.773 0 0 1-5.021-1.384l-.36-.214-3.727.952.968-3.636-.235-.374A9.773 9.773 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
-      </svg>
-      Grupo do WhatsApp
-    </a>
 
-    <a href="https://t.me/+EPXgWX2LTjMzNzgx" class="btn btn-telegram" target="_blank" rel="noopener">
-      <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.26 13.562l-2.953-.924c-.642-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.881.997z"/>
-      </svg>
-      Entrar no Telegram
-    </a>
+<div class="container">
+
+    <div class="logo">VINA</div>
+
+    <h1>PARTICIPE DO GRUPO DE FORMA GRATUITA!</h1>
+    <p>Aproveite agora as melhores promoções!</p>
+
+    <div class="timer-box">
+        <div>O ACESSO VIP GRATUITO ENCERRA EM:</div>
+        <div class="timer" id="timer">03:00</div>
+    </div>
+
+    <div class="vagas">
+        CORRA! RESTAM APENAS <span id="vagas">189</span> VAGAS!
+    </div>
+
+    <div class="progress">
+        <div class="progress-bar" id="progress"></div>
+    
+</div>
+
+<a href="https://chat.whatsapp.com/KRXeKbsqlUrI4ua9MkRvAN" class="btn whatsapp" target="_blank">
+    GARANTIR MINHA VAGA AGORA!
+</a>
+
+<a href="https://t.me/+EPXgWX2LTjMzNzgx" class="btn telegram" target="_blank">
+    ENTRAR NO TELEGRAM
+</a>
 
 </div>
-</div>
+
 <script>
-(function(){
-  const cv=document.getElementById('mx'),ctx=cv.getContext('2d');
-  const ch='01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-  let cols,drops;
-  function init(){cv.width=window.innerWidth;cv.height=window.innerHeight;cols=Math.floor(cv.width/15);drops=Array.from({length:cols},()=>Math.random()*-150);}
-  init();window.addEventListener('resize',init);
-  setInterval(function(){ctx.fillStyle='rgba(0,9,0,0.043)';ctx.fillRect(0,0,cv.width,cv.height);for(let i=0;i<cols;i++){const b=Math.random()>.94;ctx.fillStyle=b?'#afffcc':'#00ff41';ctx.font='13px "Share Tech Mono",monospace';ctx.fillText(ch[Math.floor(Math.random()*ch.length)],i*15,drops[i]*15);if(drops[i]*15>cv.height&&Math.random()>.974)drops[i]=0;drops[i]++;}},42);
-})();
-(function(){
-  const el=document.getElementById('timer');
-  const pad=n=>String(n).padStart(2,'0');
-  let left=180;
-  const iv=setInterval(function(){
-    left--;
-    if(left<=0){clearInterval(iv);el.textContent='ENCERRADO';el.classList.remove('urgent');el.classList.add('enc');return;}
-    el.textContent=pad(Math.floor(left/60))+':'+pad(left%60);
-    if(left<=30){el.classList.add('urgent');}
-  },1000);
-})();
-(function(){
-  const vn=document.getElementById('vn'),bf=document.getElementById('bf'),bp=document.getElementById('bp');
-  const TOTAL=1000;let vagas=189;
-  function r(){
-    const p=Math.min(99,Math.round(((TOTAL-vagas)/TOTAL)*100));
-    vn.textContent=vagas;
-    bf.style.width=p+'%';
-    bp.textContent=p+'%';
-  }
-  function flash(){
-    vn.classList.remove('flash');
-    void vn.offsetWidth;
-    vn.classList.add('flash');
-  }
-  r();
-  setInterval(function(){
-    if(vagas<=0)return;
-    vagas=Math.max(0,vagas-(Math.floor(Math.random()*3)+1));
-    r();
-    flash();
-  },15000);
-})();
+    let tempo = 180; // 3 minutos
+    let vagas = 189;
+
+    function atualizarTimer() {
+        let minutos = Math.floor(tempo / 60);
+        let segundos = tempo % 60;
+
+        document.getElementById("timer").innerText =
+            `${String(minutos).padStart(2,'0')}:${String(segundos).padStart(2,'0')}`;
+
+        if (tempo <= 0) {
+            document.getElementById("timer").innerText = "ENCERRADO";
+            clearInterval(contador);
+            clearInterval(vagasInterval);
+        }
+
+        tempo--;
+    }
+
+    const contador = setInterval(atualizarTimer, 1000);
+
+    // Vagas diminuindo
+    const vagasInterval = setInterval(() => {
+        let diminuir = Math.floor(Math.random() * 3) + 1;
+        vagas = Math.max(0, vagas - diminuir);
+
+        document.getElementById("vagas").innerText = vagas;
+
+        // Atualiza barra
+        let porcentagem = 100 - (vagas / 189 * 100);
+        document.getElementById("progress").style.width = porcentagem + "%";
+
+    }, 15000);
 </script>
+
 </body>
 </html>
